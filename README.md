@@ -18,3 +18,7 @@ Features
 
 
 -Database Integration: Utilizes SQL Server for efficient data storage and retrieval.
+
+#Installation
+
+https://github.com/GuideAitsarapap/StudentManagementApp.git
