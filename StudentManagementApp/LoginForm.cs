@@ -13,7 +13,8 @@ namespace StudentManagementApp
 {
     public partial class LoginForm : Form
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=DESKTOP-J98UMHR\SQLEXPRESS;Initial Catalog=Studentsdb;Integrated Security=True;Trust Server Certificate=True");
+        SqlConnection connect = new SqlConnection(DbConfig.ConnectionString);
+
         public LoginForm()
         {
             InitializeComponent();
