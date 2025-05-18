@@ -13,7 +13,7 @@ namespace StudentManagementApp
 {
     public partial class RegisterForm : Form
     {
-        SqlConnection connect = new SqlConnection(DbConfig.ConnectionString);
+        SqlConnection connect = new SqlConnection(DbConfig.studentdbConnectionString);
 
         public RegisterForm()
         {

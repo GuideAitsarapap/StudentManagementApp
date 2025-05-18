@@ -19,7 +19,7 @@ namespace StudentManagementApp
 
         public string tel { get;set; }
 
-        SqlConnection connect = new SqlConnection(DbConfig.ConnectionString);
+        SqlConnection connect = new SqlConnection(DbConfig.studentdbConnectionString);
 
 
         public List<StudentsData> StudentListData()

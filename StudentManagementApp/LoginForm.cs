@@ -13,7 +13,7 @@ namespace StudentManagementApp
 {
     public partial class LoginForm : Form
     {
-        SqlConnection connect = new SqlConnection(DbConfig.ConnectionString);
+        SqlConnection connect = new SqlConnection(DbConfig.studentdbConnectionString);
 
         public LoginForm()
         {
@@ -50,28 +50,25 @@ namespace StudentManagementApp
                     try
                     {
                         connect.Open();
+                        int count = 0;
                         string selectData = "SELECT COUNT(id) FROM Users WHERE username = @username AND password = @password";
                         using (SqlCommand command = new SqlCommand(selectData, connect))
                         {
                             command.Parameters.AddWithValue("@username", LoginUsername.Text.Trim());
                             command.Parameters.AddWithValue("@password", LoginPassword.Text.Trim());
 
-                            SqlDataAdapter adapter = new SqlDataAdapter(command);
-                            DataTable table = new DataTable();
-                            adapter.Fill(table);
-
-                            if (table.Rows.Count >= 1)
-                            {
-                                MessageBox.Show("Login successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                MainForm mainForm = new MainForm();
-                                mainForm.Show();
-                                this.Hide();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Invalid username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            count = (int)command.ExecuteScalar();
                         }
+
+                        if (count >= 1)
+                        {
+                            MessageBox.Show("Login successful", "Success");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid username or password", "Error");
+                        }
+                    
                     }
                     catch (Exception ex)
                     {
